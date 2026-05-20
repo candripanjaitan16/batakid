@@ -53,7 +53,7 @@ $navText = [
             </div>
 
             <ul class="hidden lg:flex items-center gap-8 font-medium text-white">
-                <li><a href="beranda.php" class="hover:text-cyan-300 transition"><?= $navText[$language]['beranda']; ?></a></li>
+                <li><a href="index.php" class="hover:text-cyan-300 transition"><?= $navText[$language]['beranda']; ?></a></li>
                 <li><a href="sejarah.php" class="hover:text-cyan-300 transition"><?= $navText[$language]['sejarah']; ?></a></li>
                 <li><a href="budaya.php" class="hover:text-cyan-300 transition"><?= $navText[$language]['budaya']; ?></a></li>
                 <li><a href="tradisi.php" class="hover:text-cyan-300 transition"><?= $navText[$language]['tradisi']; ?></a></li>
@@ -92,7 +92,7 @@ $navText = [
             <a href="?lang=EN" class="px-4 py-1 text-sm font-bold transition <?= $language == 'EN' ? 'bg-cyan-300 text-cyan-950' : 'text-white'; ?>">EN</a>
         </div>
         <ul class="flex flex-col gap-7 text-lg font-medium text-white">
-            <li><a href="beranda.php"><?= $navText[$language]['beranda']; ?></a></li>
+            <li><a href="index.php"><?= $navText[$language]['beranda']; ?></a></li>
             <li><a href="sejarah.php"><?= $navText[$language]['sejarah']; ?></a></li>
             <li><a href="budaya.php"><?= $navText[$language]['budaya']; ?></a></li>
             <li><a href="tradisi.php"><?= $navText[$language]['tradisi']; ?></a></li>

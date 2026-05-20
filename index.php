@@ -10,7 +10,7 @@ $language = isset($_SESSION['lang']) ? $_SESSION['lang'] : 'ID';
 $text = [
     "ID" => [
         "title1" => "Jelajahi Keindahan",
-        "title2" => "Budaya Toba",
+        "title2" => "Budaya Batak",
         "desc" => "Jelajahi budaya Batak yang kaya, wisata terbaik Sumatera Utara, kuliner khas, dan pengalaman menakjubkan di kawasan Danau Toba.",
         "button" => "Jelajahi Sekarang",
         "explore" => "Jelajahi Budaya Batak",
@@ -26,7 +26,7 @@ $text = [
     ],
     "EN" => [
         "title1" => "Explore The Beauty of",
-        "title2" => "Toba Culture",
+        "title2" => "Batak Culture",
         "desc" => "Explore Batak culture, beautiful destinations, North Sumatra culinary experiences, and unforgettable moments around Lake Toba.",
         "button" => "Explore Now",
         "explore" => "Explore Batak Culture",
@@ -50,6 +50,7 @@ $text = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budaya Batak</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="assets/icon.png" type="image/x-icon">
     <style>
         html { scroll-behavior: smooth; }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
