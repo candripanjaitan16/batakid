@@ -68,63 +68,77 @@ $text = [
     
     <?php include 'partials/navbar.php'; ?>
 
-    <section class="min-h-[calc(100vh-112px)] relative overflow-hidden pt-5 flex items-center">
+    <section class="min-h-[calc(100vh-112px)] relative overflow-hidden pt-32 lg:pt-10 flex items-center">
         <div class="absolute top-[-120px] left-[-120px] w-[350px] h-[350px] bg-cyan-400/20 rounded-full blur-3xl"></div>
         <div class="absolute bottom-[-120px] right-[-120px] w-[350px] h-[350px] bg-blue-500/20 rounded-full blur-3xl"></div>
 
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
+        <div class="max-w-7xl mx-auto px-5 md:px-6 lg:px-8 relative z-10 w-full">
             
-            <div class="grid md:grid-cols-2 items-center gap-14 py-6">
-                <div class="text-center md:text-left fadeText">
-                    <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6 text-white">
+            <div class="flex flex-col lg:grid lg:grid-cols-2 items-center gap-10 lg:gap-14 py-6">
+                
+                <div class="text-center lg:text-left fadeText order-2 lg:order-1 w-full">
+                    <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight mb-6 text-white">
                         <?= $text[$language]['title1']; ?>
                         <span class="block text-cyan-300"><?= $text[$language]['title2']; ?></span>
                     </h1>
-                    <p id="typingText" class="typing text-lg text-gray-200 leading-relaxed max-w-xl mb-8 min-h-[90px] md:min-h-[120px]"></p>
-                    <a href="sejarah.php" class="inline-flex items-center gap-3 bg-cyan-300 hover:bg-white text-cyan-950 px-8 py-4 rounded-full font-bold transition duration-300 hover:scale-105 shadow-2xl">
+                    <p id="typingText" class="typing text-sm sm:text-base lg:text-lg text-gray-200 leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8 min-h-[80px] sm:min-h-[90px] lg:min-h-[120px]"></p>
+                    <a href="sejarah.php" class="inline-flex items-center gap-3 bg-cyan-300 hover:bg-white text-cyan-950 px-8 py-4 rounded-full font-bold transition duration-300 hover:scale-105 shadow-2xl text-sm sm:text-base">
                         <?= $text[$language]['button']; ?> <span>→</span>
                     </a>
                 </div>
-                <div class="flex justify-center fadeImage relative">
-                    <div class="absolute w-[300px] h-[300px] bg-cyan-400/20 rounded-full blur-3xl"></div>
-                    <img src="assets/batak.png" alt="Budaya Batak" class="relative z-10 w-full max-w-lg object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] hover:scale-105 transition duration-500">
+                
+                <div class="flex justify-center fadeImage relative order-1 lg:order-2 w-full">
+                    <div class="absolute w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] bg-cyan-400/20 rounded-full blur-3xl"></div>
+                    <img src="assets/batak.png" alt="Budaya Batak" class="relative z-10 w-[85%] sm:w-[55%] lg:w-full max-w-lg object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] hover:scale-105 transition duration-500">
                 </div>
             </div>
 
-            <div class="py-20">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-black mb-5 text-white"><?= $text[$language]['explore']; ?></h2>
-                    <p class="text-gray-300 max-w-2xl mx-auto text-lg"><?= $text[$language]['exploreDesc']; ?></p>
+            <div class="py-16 lg:py-20">
+                <div class="text-center mb-12 lg:mb-16">
+                    <h2 class="text-3xl lg:text-5xl font-black mb-4 text-white"><?= $text[$language]['explore']; ?></h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg px-4"><?= $text[$language]['exploreDesc']; ?></p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-3xl p-8 hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300">
-                        <div class="w-14 h-14 rounded-2xl bg-cyan-300/20 border border-cyan-300/30 flex items-center justify-center mb-6">
-                            <div class="w-6 h-6 bg-cyan-300 rounded-md"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-3xl p-6 lg:p-8 flex flex-col justify-between hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-cyan-300/20 border border-cyan-300/30 flex items-center justify-center mb-6">
+                                <div class="w-6 h-6 bg-cyan-300 rounded-md"></div>
+                            </div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-cyan-300 mb-4"><?= $text[$language]['card1']; ?></h3>
+                            <p class="text-gray-200 leading-relaxed text-sm lg:text-base"><?= $text[$language]['cardDesc1']; ?></p>
                         </div>
-                        <h3 class="text-2xl font-bold text-cyan-300 mb-4"><?= $text[$language]['card1']; ?></h3>
-                        <p class="text-gray-200 leading-relaxed"><?= $text[$language]['cardDesc1']; ?></p>
+                        
                     </div>
-                    <div class="bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-3xl p-8 hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300">
-                        <div class="w-14 h-14 rounded-2xl bg-cyan-300/20 border border-cyan-300/30 flex items-center justify-center mb-6">
-                            <div class="w-6 h-6 bg-cyan-300 rounded-full"></div>
+                    <div class="bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-3xl p-6 lg:p-8 flex flex-col justify-between hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-cyan-300/20 border border-cyan-300/30 flex items-center justify-center mb-6">
+                                <div class="w-6 h-6 bg-cyan-300 rounded-full"></div>
+                            </div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-cyan-300 mb-4"><?= $text[$language]['card2']; ?></h3>
+                            <p class="text-gray-200 leading-relaxed text-sm lg:text-base"><?= $text[$language]['cardDesc2']; ?></p>
                         </div>
-                        <h3 class="text-2xl font-bold text-cyan-300 mb-4"><?= $text[$language]['card2']; ?></h3>
-                        <p class="text-gray-200 leading-relaxed"><?= $text[$language]['cardDesc2']; ?></p>
+
                     </div>
-                    <div class="bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-3xl p-8 hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300">
-                        <div class="w-14 h-14 rounded-2xl bg-cyan-300/20 border border-cyan-300/30 flex items-center justify-center mb-6">
-                            <div class="w-7 h-7 border-4 border-cyan-300 rounded-full"></div>
+                    <div class="bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-3xl p-6 lg:p-8 flex flex-col justify-between hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-cyan-300/20 border border-cyan-300/30 flex items-center justify-center mb-6">
+                                <div class="w-7 h-7 border-4 border-cyan-300 rounded-full"></div>
+                            </div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-cyan-300 mb-4"><?= $text[$language]['card3']; ?></h3>
+                            <p class="text-gray-200 leading-relaxed text-sm lg:text-base"><?= $text[$language]['cardDesc3']; ?></p>
                         </div>
-                        <h3 class="text-2xl font-bold text-cyan-300 mb-4"><?= $text[$language]['card3']; ?></h3>
-                        <p class="text-gray-200 leading-relaxed"><?= $text[$language]['cardDesc3']; ?></p>
+
                     </div>
-                    <div class="bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-3xl p-8 hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300">
-                        <div class="w-14 h-14 rounded-2xl bg-cyan-300/20 border border-cyan-300/30 flex items-center justify-center mb-6">
-                            <div class="w-6 h-6 border-l-4 border-b-4 border-cyan-300 rotate-45"></div>
+                    <div class="bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-3xl p-6 lg:p-8 flex flex-col justify-between hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-cyan-300/20 border border-cyan-300/30 flex items-center justify-center mb-6">
+                                <div class="w-6 h-6 border-l-4 border-b-4 border-cyan-300 rotate-45"></div>
+                            </div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-cyan-300 mb-4"><?= $text[$language]['card4']; ?></h3>
+                            <p class="text-gray-200 leading-relaxed text-sm lg:text-base"><?= $text[$language]['cardDesc4']; ?></p>
                         </div>
-                        <h3 class="text-2xl font-bold text-cyan-300 mb-4"><?= $text[$language]['card4']; ?></h3>
-                        <p class="text-gray-200 leading-relaxed"><?= $text[$language]['cardDesc4']; ?></p>
+
                     </div>
                 </div>
             </div>

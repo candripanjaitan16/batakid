@@ -55,6 +55,7 @@ $footText = [
                 <p class="text-gray-400 leading-relaxed max-w-sm">
                     <?= $footText[$language]['desc']; ?>
                 </p>
+                <a href="https://candri.my.id" target="_blank">Pencipta</a>
             </div>
 
             <div>
