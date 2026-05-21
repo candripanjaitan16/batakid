@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include 'database/config.php';
+
 if (isset($_GET['lang'])) {
     $_SESSION['lang'] = $_GET['lang'];
 }
@@ -30,29 +32,8 @@ $text = [
     ]
 ];
 
-$cards_dari_database = [
-    [
-        "icon_shape" => "square",
-        "title_id"   => "Kerajaan Batak",
-        "title_en"   => "Batak Kingdom",
-        "desc_id"    => "Masyarakat Batak dahulu hidup dalam sistem kerajaan dan marga yang kuat.",
-        "desc_en"    => "Batak people once lived in a strong kingdom and clan system."
-    ],
-    [
-        "icon_shape" => "circle",
-        "title_id"   => "Danau Toba",
-        "title_en"   => "Lake Toba",
-        "desc_id"    => "Danau Toba menjadi pusat perkembangan budaya Batak sejak zaman dahulu.",
-        "desc_en"    => "Lake Toba became the center of Batak cultural development since ancient times."
-    ],
-    [
-        "icon_shape" => "triangle",
-        "title_id"   => "Perkembangan Budaya",
-        "title_en"   => "Cultural Development",
-        "desc_id"    => "Budaya Batak terus berkembang mengikuti zaman tanpa meninggalkan identitas asli.",
-        "desc_en"    => "Batak culture continues to evolve while maintaining its original identity."
-    ]
-];
+$query = "SELECT * FROM konten_budaya WHERE kategori = 'sejarah' ORDER BY id DESC";
+$tampil = mysqli_query($koneksi, $query);
 ?>
 
 <!DOCTYPE html>
@@ -115,25 +96,23 @@ $cards_dari_database = [
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <?php foreach ($cards_dari_database as $card) { 
+                    <?php while ($card = mysqli_fetch_assoc($tampil)) { 
                         $title = ($language == "ID") ? $card['title_id'] : $card['title_en'];
                         $desc = ($language == "ID") ? $card['desc_id'] : $card['desc_en'];
+                        $link_detail = "public/sejarah/" . $card['nama_file'] . ".php";
                     ?>
-                        <div class="bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-3xl p-8 flex flex-col justify-between hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300">
+                        <a href="<?= $link_detail; ?>" class="group bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-[35px] p-6 flex flex-col justify-between hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300 overflow-hidden">
                             <div>
-                                <div class="w-14 h-14 rounded-2xl bg-cyan-300/20 border border-cyan-300/30 flex items-center justify-center mb-6">
-                                    <?php if ($card['icon_shape'] == 'square'): ?>
-                                        <div class="w-6 h-6 bg-cyan-300 rounded-md"></div>
-                                    <?php elseif ($card['icon_shape'] == 'circle'): ?>
-                                        <div class="w-6 h-6 border-4 border-cyan-300 rounded-full"></div>
-                                    <?php else: ?>
-                                        <div class="w-6 h-6 border-l-4 border-b-4 border-cyan-300 rotate-45 mb-1 ml-1"></div>
-                                    <?php endif; ?>
+                                <div class="w-full h-48 rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-cyan-300/10">
+                                    <img src="assets/uploads/<?= $card['gambar']; ?>" alt="<?= $title; ?>" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                                 </div>
-                                <h3 class="text-2xl font-bold text-cyan-300 mb-4"><?= $title; ?></h3>
-                                <p class="text-gray-200 leading-relaxed"><?= $desc; ?></p>
+                                <h3 class="text-2xl font-bold text-cyan-300 mb-4 group-hover:text-white transition line-clamp-1"><?= $title; ?></h3>
+                                <p class="text-gray-200 leading-relaxed text-sm line-clamp-3"><?= $desc; ?></p>
                             </div>
-                        </div>
+                            <div class="mt-5 text-xs font-bold text-cyan-300 text-right opacity-0 group-hover:opacity-100 transition duration-300">
+                                Selengkapnya &rarr;
+                            </div>
+                        </a>
                     <?php } ?>
                 </div>
             </div>

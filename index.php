@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include 'database/config.php';
+
 if (isset($_GET['lang'])) {
     $_SESSION['lang'] = $_GET['lang'];
 }
