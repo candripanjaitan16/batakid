@@ -1,7 +1,18 @@
 <?php
 session_start();
 
+// 1. AKTIFKAN PENGINTIP ERROR BIAR GA RABA-RABA
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// 2. INCLUDE CONFIG DATABASE
 include 'database/config.php';
+
+// 3. BUAT KONEKSI NYATA MENGGUNAKAN KONSTANTA DARI CONFIG
+$koneksi = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if (!$koneksi) {
+    die("Koneksi database gagal: " . mysqli_connect_error());
+}
 
 if (isset($_GET['lang'])) {
     $_SESSION['lang'] = $_GET['lang'];
@@ -32,6 +43,7 @@ $text = [
     ]
 ];
 
+// 4. JALANKAN QUERY (Sekarang variabel $koneksi sudah aman tersedia)
 $query = "SELECT * FROM konten_budaya WHERE kategori = 'sejarah' ORDER BY id DESC";
 $tampil = mysqli_query($koneksi, $query);
 ?>
@@ -96,23 +108,29 @@ $tampil = mysqli_query($koneksi, $query);
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <?php while ($card = mysqli_fetch_assoc($tampil)) { 
-                        $title = ($language == "ID") ? $card['title_id'] : $card['title_en'];
-                        $desc = ($language == "ID") ? $card['desc_id'] : $card['desc_en'];
-                        $link_detail = "public/sejarah/" . $card['nama_file'] . ".php";
-                    ?>
-                        <a href="<?= $link_detail; ?>" class="group bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-[35px] p-6 flex flex-col justify-between hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300 overflow-hidden">
-                            <div>
-                                <div class="w-full h-48 rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-cyan-300/10">
-                                    <img src="assets/uploads/<?= $card['gambar']; ?>" alt="<?= $title; ?>" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <?php if (mysqli_num_rows($tampil) > 0) { ?>
+                        <?php while ($card = mysqli_fetch_assoc($tampil)) { 
+                            $title = ($language == "ID") ? $card['title_id'] : $card['title_en'];
+                            $desc = ($language == "ID") ? $card['desc_id'] : $card['desc_en'];
+                            $link_detail = "public/sejarah/" . $card['nama_file'] . ".php";
+                        ?>
+                            <a href="<?= $link_detail; ?>" class="group bg-white/10 backdrop-blur-lg border border-cyan-300/20 rounded-[35px] p-6 flex flex-col justify-between hover:-translate-y-3 transition duration-500 shadow-2xl hover:border-cyan-300 overflow-hidden">
+                                <div>
+                                    <div class="w-full h-48 rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-cyan-300/10">
+                                        <img src="assets/uploads/<?= $card['gambar']; ?>" alt="<?= $title; ?>" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-cyan-300 mb-4 group-hover:text-white transition line-clamp-1"><?= $title; ?></h3>
+                                    <p class="text-gray-200 leading-relaxed text-sm line-clamp-3"><?= $desc; ?></p>
                                 </div>
-                                <h3 class="text-2xl font-bold text-cyan-300 mb-4 group-hover:text-white transition line-clamp-1"><?= $title; ?></h3>
-                                <p class="text-gray-200 leading-relaxed text-sm line-clamp-3"><?= $desc; ?></p>
-                            </div>
-                            <div class="mt-5 text-xs font-bold text-cyan-300 text-right opacity-0 group-hover:opacity-100 transition duration-300">
-                                Selengkapnya &rarr;
-                            </div>
-                        </a>
+                                <div class="mt-5 text-xs font-bold text-cyan-300 text-right opacity-0 group-hover:opacity-100 transition duration-300">
+                                    Selengkapnya &rarr;
+                                </div>
+                            </a>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <div class="col-span-full text-center py-10 text-gray-400 text-lg">
+                            Belum ada artikel sejarah yang tersedia di database.
+                        </div>
                     <?php } ?>
                 </div>
             </div>
