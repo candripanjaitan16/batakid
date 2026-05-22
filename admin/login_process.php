@@ -1,6 +1,15 @@
 <?php
 session_start();
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include '../database/config.php';
+
+$koneksi = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if (!$koneksi) {
+    die("Koneksi database ke panel admin gagal: " . mysqli_connect_error());
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = mysqli_real_escape_string($koneksi, $_POST['username']);
