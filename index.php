@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include 'database/config.php';
 
 if (isset($_GET['lang'])) {
